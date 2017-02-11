@@ -24,7 +24,7 @@ class APIException extends Exception {
      * @var Http\HttpContext
      */
     private $context;
-    
+
     /**
      * The HTTP response code from the API request
      * @param string $reason the reason for raising an exception
