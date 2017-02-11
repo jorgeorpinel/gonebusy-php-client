@@ -4,7 +4,7 @@
 */
 
 // include composer's autoloader to enable auto loading of classes
-require_once "../vendor/autoload.php";
+require_once "vendor/autoload.php";
 
 use GonebusyLib\GonebusyClient;
 use GonebusyLib\Models\CreateServiceBody;
