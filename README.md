@@ -75,7 +75,7 @@ sh test/prism.sh
 ```
 > `prism version` should now output "Prism version is 0.6.14"
 
-* Run `prism run -d -l -m -s ./gb_swagger.users.json` in a separate terminal/tab or the background.  
+* Run `prism run -d -l -m -s test/gb_swagger.users.json` in a separate terminal/tab or the background.  
   This tells Prism to start a proxy server and mock the responses with random data
   > See `prism run --help`
 

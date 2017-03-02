@@ -21,4 +21,9 @@ class Environments
      * Sandbox
      */
     const SANDBOX = "sandbox";
+
+    /**
+     * Prism
+     */
+    const PRISM = "prism";
 }

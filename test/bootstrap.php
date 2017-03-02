@@ -4,8 +4,7 @@
 // To have the SDK namespaces available for the test cases
 require_once "vendor/autoload.php";
 
-use GonebusyLib\Servers;
-use GonebusyLib\Environments;
 use GonebusyLib\Configuration;
+use GonebusyLib\Environments;
 
-Configuration::$environment = 'prism';
+Configuration::$environment = Environments::PRODUCTION;

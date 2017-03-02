@@ -16,7 +16,7 @@ class UsersTest extends TestCase
     private $authorization;
 
     /**
-     * To conatin the GonebusyLib\GonebusyClient
+     * To contain the GonebusyLib\GonebusyClient
      */
     protected $client;
 
@@ -32,8 +32,9 @@ class UsersTest extends TestCase
     public function setUp() {
         // TODO Use mock objects instead
         // (which will use and intercept SDK HTTP requests, returning fixture files)
-        $this->authorization = "Token ac98ed08b5b0a9e7c43a233aeba841ce"; // <testing@gonebusy.com>
-        $this->client = new GonebusyClient($authorization);
+        // $this->authorization = "Token ac98ed08b5b0a9e7c43a233aeba841ce"; // <testing@gonebusy.com>
+        $this->authorization = "Token 00000000000000000000000000000000"; // Mock ID
+        $this->client = new GonebusyClient($this->authorization);
 
         $this->users = $this->client->getUsers();
     }
@@ -85,7 +86,7 @@ class UsersTest extends TestCase
                 $this->authorization,
                 $id,
                 $updateUserByIdBody);
-        print_r($response);
+        // print_r($response);
 
         // $this->assertObjectHasAttribute('user', $response);
         // $this->assertEquals($id, $response->user->accountManagerId);
@@ -129,7 +130,7 @@ class UsersTest extends TestCase
         $response = $this->users->createUser(
             $this->authorization,
             $createUserBody);
-        print_r($response);
+        // print_r($response);
 
         // $this->assert... // XXX What would we look for?
     }
