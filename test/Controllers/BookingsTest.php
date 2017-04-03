@@ -40,7 +40,7 @@ class BookingsTest extends TestCase
      * Create the GonebusyClient and BookingsController, etc for each test.
      */
     public function setUp() {
-        $this->client = new GonebusyClient();
+        $this->client = new GonebusyClient(null, true);
         $this->bookings = $this->client->getBookings();
 
         $this->services = $this->client->getServices();
@@ -139,21 +139,21 @@ class BookingsTest extends TestCase
      * GonebusyLib\Controllers\UsersController::createBooking()
      */
     public function testCreateBooking() {
+        if(Configuration::$debug)
+            error_log("Running test/Controllers/BookingsTest::testCreateBooking()\n", 3, Configuration::$debug_file);
+
         // Create Service:
         $createServiceBody = $this->createBody('Service');
         $serviceResponse = $this->services->createService(Configuration::$authorization, $createServiceBody);
         // Create Resource:
         $createResourceBody = $this->createBody('Resource');
         $resourceResponse = $this->resources->createResource(Configuration::$authorization, $createResourceBody);
-        // Give open Schedule for seervice/resource combination:
+        if(Configuration::$debug) error_log('Make open schedule for service/resource combination:');
         $createScheduleBody = $this->scheduleBody($serviceResponse->service->id, $resourceResponse->resource->id);
         $scheduleResponse = $this->schedules->createSchedule(Configuration::$authorization, $createScheduleBody);
-        // print_r($scheduleResponse->schedule->timeWindows[0]);
 
-
-        // Create Booking:
+        if(Configuration::$debug) error_log('Create Booking:');
         $createBookingBody = $this->bookingBody('create', $serviceResponse->service->id, $resourceResponse->resource->id);
-        // print_r($createBookingBody);
         $response = $this->bookings->createBooking(
             Configuration::$authorization,
             $createBookingBody
@@ -238,4 +238,11 @@ class BookingsTest extends TestCase
         //     $userId = null
     }
 
+
+    /**
+     * Finish test.
+     */
+    public function tearDown() {
+
+    }
 }

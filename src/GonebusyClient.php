@@ -16,13 +16,20 @@ class GonebusyClient
 {
     /**
      * Constructor with authentication and configuration parameters
+     * @param  string $authorization API auth token string. Defaults to Configuration::$authorization
+     * @param  boolean $debug whether to output REST debug info. Defaults to false.
      */
     public function __construct(
-        $authorization = null
+        $authorization = null,
+        $debug = null
     ) {
         Configuration::$authorization = $authorization ? $authorization : Configuration::$authorization;
+
+        Configuration::$debug = $debug ? true : false;
+        if(Configuration::$debug)
+            error_log(date('e Y-m-d H:s') . " REST debug enabled.\n", 3, Configuration::$debug_file);
     }
- 
+
     /**
      * Singleton access to Bookings controller
      * @return Controllers\BookingsController The *Singleton* instance
@@ -31,7 +38,7 @@ class GonebusyClient
     {
         return Controllers\BookingsController::getInstance();
     }
- 
+
     /**
      * Singleton access to Categories controller
      * @return Controllers\CategoriesController The *Singleton* instance
@@ -40,7 +47,7 @@ class GonebusyClient
     {
         return Controllers\CategoriesController::getInstance();
     }
- 
+
     /**
      * Singleton access to PricingModels controller
      * @return Controllers\PricingModelsController The *Singleton* instance
@@ -49,7 +56,7 @@ class GonebusyClient
     {
         return Controllers\PricingModelsController::getInstance();
     }
- 
+
     /**
      * Singleton access to Resources controller
      * @return Controllers\ResourcesController The *Singleton* instance
@@ -58,7 +65,7 @@ class GonebusyClient
     {
         return Controllers\ResourcesController::getInstance();
     }
- 
+
     /**
      * Singleton access to Schedules controller
      * @return Controllers\SchedulesController The *Singleton* instance
@@ -67,7 +74,7 @@ class GonebusyClient
     {
         return Controllers\SchedulesController::getInstance();
     }
- 
+
     /**
      * Singleton access to Search controller
      * @return Controllers\SearchController The *Singleton* instance
@@ -76,7 +83,7 @@ class GonebusyClient
     {
         return Controllers\SearchController::getInstance();
     }
- 
+
     /**
      * Singleton access to Services controller
      * @return Controllers\ServicesController The *Singleton* instance
@@ -85,7 +92,7 @@ class GonebusyClient
     {
         return Controllers\ServicesController::getInstance();
     }
- 
+
     /**
      * Singleton access to Users controller
      * @return Controllers\UsersController The *Singleton* instance

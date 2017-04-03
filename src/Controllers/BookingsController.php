@@ -174,8 +174,20 @@ class BookingsController extends BaseController
             $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
+        if(Configuration::$debug)
+            error_log(
+                __METHOD__ . ' ' .
+                "request body:\n" .
+                json_encode(json_decode(Request\Body::Json($createBookingBody)), JSON_PRETTY_PRINT) . "\n",
+                3, Configuration::$debug_file);
         //and invoke the API call request to fetch the response
         $response = Request::post($_queryUrl, $_headers, Request\Body::Json($createBookingBody));
+        if(Configuration::$debug)
+            error_log(
+                __METHOD__ . ' ' .
+                "response:\n" .
+                json_encode(json_decode($response->raw_body), JSON_PRETTY_PRINT) . "\n",
+                3, Configuration::$debug_file);
 
         $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
         $_httpContext = new HttpContext($_httpRequest, $_httpResponse);

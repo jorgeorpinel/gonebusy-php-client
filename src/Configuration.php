@@ -14,7 +14,7 @@ namespace GonebusyLib;
 class Configuration
 {
     /**
-     * The environment being used'
+     * The environment being used
      * @var string
      */
     public static $environment = Environments::PRODUCTION;
@@ -22,11 +22,21 @@ class Configuration
     /**
      * Set Authorization to "Token <your API key>"
      * @var string
-     */
-    /**
      * @todo Replace the $authorization with an appropriate value
      */
     public static $authorization = 'Token <your API key>';
+
+    /**
+     * Where to append debug output.
+     * @var string
+     */
+    public static $debug_file = 'debug.log';
+
+    /**
+     * Whether to output REST debug info.
+     * @var boolean
+     */
+    public static $debug = false;
 
     /**
      * Get the base uri for a given server in the current environment
